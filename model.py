@@ -12,6 +12,7 @@ from sklearn import model_selection, svm
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
 
 
 # Open preproccessed csv
@@ -42,12 +43,15 @@ test_x_tfidf = tfidf_vect.transform(test_x)
 
 # Fit the training dataset to the classifier
 print("TRAINING THE MODEL")
-SVM = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
-SVM.fit(train_x_tfidf, train_y)
+# SVM = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
+# SVM.fit(train_x_tfidf, train_y)
+model = LogisticRegression(C=1.0)
+model.fit(train_x_tfidf, train_y)
 
-print("RUNNING TEST PREDICTIONS")
-predictions = SVM.predict(test_x_tfidf)
+# print("RUNNING TEST PREDICTIONS")
+# predictions = SVM.predict(test_x_tfidf)
 
 # Calculate accuracy score
-accuracy = accuracy_score(test_y, predictions)
-print("Accuracy:", str(accuracy * 100) + "%")
+# accuracy = accuracy_score(test_y, predictions)
+# print("Accuracy:", str(accuracy * 100) + "%")
+print("Accuracy Score:", model.score(test_x_tfidf, test_y))
