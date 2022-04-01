@@ -9,7 +9,7 @@ REFERENCE: https://medium.com/@bedigunjit/simple-guide-to-text-classification-nl
 import numpy as np
 import pandas as pd
 from sklearn import model_selection, svm
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -51,3 +51,6 @@ predictions = SVM.predict(test_x_tfidf)
 # Calculate accuracy score
 accuracy = accuracy_score(test_y, predictions)
 print("Accuracy:", str(accuracy * 100) + "%")
+
+print("Confusion Matrix:")
+print(confusion_matrix(test_y, predictions))
